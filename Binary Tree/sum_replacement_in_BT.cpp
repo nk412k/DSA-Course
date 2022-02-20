@@ -12,16 +12,25 @@ struct node{
     }
 };
 
-void inorder_traversal(node* root){
+void sum_replacement(node* root){
+    if(root==NULL)
+    return;
+    sum_replacement(root->left);
+    sum_replacement(root->right);
+    if(root->left!=NULL)
+    root->data+=root->left->data;
+    if(root->right!=NULL)
+    root->data+=root->right->data;
+    
+}
+void display(node* root){
     if(root==NULL){
         return;
     }
-    inorder_traversal(root->left);
     cout<<root->data<<" ";
-    inorder_traversal(root->right);
+    display(root->left);
+    display(root->right);
 }
-
-
 int main(){
     node* root=new node(1);
     root->left=new node(2);
@@ -30,5 +39,6 @@ int main(){
     root->left->right=new node(5);
     root->right->left=new node(6);
     root->right->right=new node(7);
-    inorder_traversal(root);
+    sum_replacement(root);
+    display(root);
 }

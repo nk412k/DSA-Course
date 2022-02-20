@@ -12,15 +12,13 @@ struct node{
     }
 };
 
-void inorder_traversal(node* root){
-    if(root==NULL){
-        return;
-    }
-    inorder_traversal(root->left);
-    cout<<root->data<<" ";
-    inorder_traversal(root->right);
+int cal_height(node* root){
+    if(root==NULL)
+    return 0;
+    int lh=cal_height(root->left);
+    int rh=cal_height(root->right);
+    return max(lh,rh)+1;
 }
-
 
 int main(){
     node* root=new node(1);
@@ -30,5 +28,5 @@ int main(){
     root->left->right=new node(5);
     root->right->left=new node(6);
     root->right->right=new node(7);
-    inorder_traversal(root);
+    cout<<cal_height(root);
 }

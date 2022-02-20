@@ -12,15 +12,12 @@ struct node{
     }
 };
 
-void inorder_traversal(node* root){
+int count_nodes(node* root){
     if(root==NULL){
-        return;
+        return 0;
     }
-    inorder_traversal(root->left);
-    cout<<root->data<<" ";
-    inorder_traversal(root->right);
+    return count_nodes(root->left)+count_nodes(root->right)+1;
 }
-
 
 int main(){
     node* root=new node(1);
@@ -30,5 +27,5 @@ int main(){
     root->left->right=new node(5);
     root->right->left=new node(6);
     root->right->right=new node(7);
-    inorder_traversal(root);
+    cout<<count_nodes(root);
 }

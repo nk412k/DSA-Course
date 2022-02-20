@@ -12,15 +12,18 @@ struct node{
     }
 };
 
-void inorder_traversal(node* root){
+int diameter_of_bt(node* root,int* h){
     if(root==NULL){
-        return;
+        *h=0;
+        return 0;
     }
-    inorder_traversal(root->left);
-    cout<<root->data<<" ";
-    inorder_traversal(root->right);
+    int lh=0,rh=0;
+    int leftdiameter=diameter_of_bt(root->left,&lh);
+    int rightdiameter=diameter_of_bt(root->right,&rh);
+    int currdiamter=lh+rh+1;
+    *h=max(lh,rh)+1;
+    return max(currdiamter,max(rightdiameter,leftdiameter));
 }
-
 
 int main(){
     node* root=new node(1);
@@ -30,5 +33,6 @@ int main(){
     root->left->right=new node(5);
     root->right->left=new node(6);
     root->right->right=new node(7);
-    inorder_traversal(root);
+    int h=0;
+    cout<<diameter_of_bt(root,&h);
 }

@@ -12,13 +12,10 @@ struct node{
     }
 };
 
-void inorder_traversal(node* root){
-    if(root==NULL){
-        return;
-    }
-    inorder_traversal(root->left);
-    cout<<root->data<<" ";
-    inorder_traversal(root->right);
+int sum_nodes(node* root){
+    if(root==NULL)
+    return 0;
+    return sum_nodes(root->left)+sum_nodes(root->right)+root->data;
 }
 
 
@@ -30,5 +27,5 @@ int main(){
     root->left->right=new node(5);
     root->right->left=new node(6);
     root->right->right=new node(7);
-    inorder_traversal(root);
+    cout<<sum_nodes(root);
 }
