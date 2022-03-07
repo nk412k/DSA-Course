@@ -15,7 +15,7 @@ bool isfesible(int a[],int n,int k,int mid){
 }
 int max_min_distance(int a[],int n,int k){
     sort(a,a+n);
-    int start=1,end=n,result=-1;
+    int start=1,end=a[n-1],result=-1;
     while(start<end){
         int mid=(start+end)/2;
         if(isfesible(a,n,k,mid)){
